@@ -6,8 +6,14 @@ function App() {
 
 const [dice, setDice] = useState(allNewDice());
 
+
+//Roll dice
+function rollDice(){
+  setDice(allNewDice());
+}
+
   //Generate Random Number for dice
-  function allNewDice(){
+function allNewDice(){
     let newDice = [];
     for(let i = 0; i < 10; i++){
       //random number from 1-6
@@ -24,11 +30,10 @@ const [dice, setDice] = useState(allNewDice());
   return (
     <main className='die__disc'>
       <div className='die__container'>
-        
         {diceElements}
-
-        <button className='die__btn'>Roll</button>
-      </div>
+        </div>
+        <button className='die__btn' onClick={rollDice}>Roll</button>
+      
   
     </main>
   )
