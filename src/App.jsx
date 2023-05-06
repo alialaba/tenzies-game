@@ -8,33 +8,47 @@ function App() {
 const [dice, setDice] = useState(allNewDice());
 
 
-//Roll dice
-function rollDice(){
-  setDice(allNewDice());
+//Pull random dice
+
+function generateNewDice(){
+  return {
+    value: Math.ceil(Math.random() * 6),
+    isHeld: false,
+    id: nanoid()
+  }
 }
 
-  //Generate Random Number for dice
+//Generate Random Number for dice
 function allNewDice(){
     let newDice = [];
     for(let i = 0; i < 10; i++){
-      //random number from 1-6
-      const randomNumber = Math.ceil(Math.random() * 6);
-      newDice.push({
-        value: randomNumber,
-        isHeld: false,
-        id: nanoid()
-
-      })
+      newDice.push(generateNewDice())
     }
     return newDice;
   }
 
-  // console.log(allNewDice());
 
-  const diceElements = dice.map((die)=> (<Die key={die.id} dieValue={die.value} isHeld={die.isHeld}/>))
+//Roll dice
+function rollDice(){
+  // setDice(allNewDice());
+
+  setDice((oldDice)=> oldDice.map((die)=>( die.isHeld ? die : generateNewDice())))
+}
+
+
+
+  // Hold dice
+  function holdDice(id){
+
+   setDice((prevDice)=> prevDice.map((die)=>(die.id === id ? {...die, isHeld:!die.isHeld} : die)))
+  }
+
+  const diceElements = dice.map((die)=> (<Die key={die.id}   dieValue={die.value} isHeld={die.isHeld} onHold={()=> holdDice(die.id)} />))
 
   return (
     <main className='die__disc'>
+            <h1 className="die__title">Tenzies</h1>
+            <p className="die__instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
       <div className='die__container'>
         {diceElements}
         </div>
