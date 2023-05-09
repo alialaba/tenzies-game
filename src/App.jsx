@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Die from './Die';
 import { nanoid } from 'nanoid';
 
@@ -6,10 +6,22 @@ import { nanoid } from 'nanoid';
 function App() {
 
 const [dice, setDice] = useState(allNewDice());
+const [tenzies, setTenzies] = useState(false);
+
+
+
+//SideEffect that run everytime dice changes
+
+useEffect(()=>{
+  // const firstValue  =  dice
+  const allDiceHeld = dice.every((die) => die.isHeld);
+
+
+  console.log(allDiceHeld);
+},[dice])
 
 
 //Pull random dice
-
 function generateNewDice(){
   return {
     value: Math.ceil(Math.random() * 6),
