@@ -1,7 +1,7 @@
 export default function({dieValue, isHeld, onHold}){
 
   const bgColor ={
-     backgroundColor: isHeld ? "#59E391" : "3fff" 
+     backgroundColor: isHeld ? "#59E391" : "#fff" 
   }
     return(
        <>
