@@ -8,7 +8,7 @@ function App() {
 
 const [dice, setDice] = useState(allNewDice());
 const [tenzies, setTenzies] = useState(false);
-
+const [roll, setRoll] = useState(0);
 
 
 //SideEffect that run everytime dice changes
@@ -48,6 +48,7 @@ function rollDice(){
   // setDice(allNewDice());
 
   setDice((oldDice)=> oldDice.map((die)=>( die.isHeld ? die : generateNewDice())))
+  setRoll(roll + 1)
 }
 
 
@@ -69,6 +70,7 @@ function rollDice(){
         {diceElements}
         </div>
         <button className='die__btn' onClick={rollDice}>{tenzies ? "New Game" : "Roll"}</button>
+        <h4>Rolls: {roll}</h4>
     </main>
   )
 }

@@ -86,15 +86,17 @@ button:focus-visible {
   grid-template: auto auto / repeat(5, 1fr);
 }
 .die__face{
-    align-items: center;
-    background-color: #fff;
+    /* align-items: center;
+    background-color: #fff; */
+    /* align-items: center; */
     border-radius: 10px;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
     cursor: pointer;
     display: flex;
-    height: 50px;
-    justify-content: center;
-    width: 50px;
+    height: 55px;
+    width: 55px;
+    padding: .5em;
+  
 }
 
 .die__num{
@@ -116,3 +118,68 @@ button:focus-visible {
 .die__btn:active{
   box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
 }
+
+ .dot {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color:black;
+  /* position: absolute; */
+}
+
+.die__1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+.die__2{
+  display: flex ;
+  justify-content: space-between;
+
+  gap: 2em;
+}
+
+.die__2 .dot:nth-of-type(2) {
+  align-self: flex-end;
+}
+
+ .die__3{
+  display: flex ;
+  justify-content: space-around;
+
+  gap: 1em;
+}
+
+.die__3 .dot:nth-of-type(1) {
+  align-self :flex-end;
+}
+
+.die__3 .dot:nth-of-type(2) {
+  align-self :center;
+}
+
+
+ .die__4 , .die__6,.die__5{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  column-gap: 2em;
+  row-gap: .5em;
+
+} 
+.die__5 .dot:nth-of-type(2){
+transform: translateX(22px);
+}
+
+.die__4 .dot:nth-of-type(2){
+  transform: translateY(-50px);
+  transform: translateX(42px);
+  margin-top: 1em;
+  }
+.die__4 .dot:nth-of-type(4){
+    transform: translateX(-42px);
+}
+
