@@ -47,7 +47,7 @@ export default function({dieValue, isHeld, onHold}){
     return(
        <>
        <div className="die__face"  style={bgColor} onClick={onHold}>
-         <div className={`die__${dieValue}`}>{dots}</div>
+         <div className={`die__${dieValue}`} >{dots}</div>
          {/* <div className={`die__${dieValue}`}></div> */}
          </div>
        

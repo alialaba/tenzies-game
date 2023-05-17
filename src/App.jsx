@@ -10,6 +10,10 @@ const [dice, setDice] = useState(allNewDice());
 const [tenzies, setTenzies] = useState(false);
 const [roll, setRoll] = useState(0);
 
+ //lazy state initialization (retrieve less best number of roll)
+const [best, setBest] = useState(()=> JSON.parse(localStorage.getItem("best")) || 0);
+
+
 
 //SideEffect that run everytime dice changes
  useEffect(()=>{
@@ -19,6 +23,10 @@ const [roll, setRoll] = useState(0);
   
   if(allDiceHeld && allSameValue){
     setTenzies(true);
+    if(roll < best || best === 0){
+      localStorage.setItem("best" , roll);
+      setBest(roll)
+    }
   }
   
 },[dice]) 
@@ -42,16 +50,19 @@ function allNewDice(){
     return newDice;
   }
 
-
 //Roll dice
 function rollDice(){
-  // setDice(allNewDice());
-
-  setDice((oldDice)=> oldDice.map((die)=>( die.isHeld ? die : generateNewDice())))
-  setRoll(roll + 1)
+  //if tenzies is false
+  if(!tenzies){
+    setDice((oldDice)=> oldDice.map((die)=>( die.isHeld ? die : generateNewDice())))
+    setRoll(roll + 1)
+  }else{
+    setTenzies(false);
+    setDice(allNewDice());
+    setRoll(0);
+  }
+ 
 }
-
-
 
   // Hold dice
   function holdDice(id){
@@ -70,7 +81,11 @@ function rollDice(){
         {diceElements}
         </div>
         <button className='die__btn' onClick={rollDice}>{tenzies ? "New Game" : "Roll"}</button>
+        
+        <div className="die__board">
         <h4>Rolls: {roll}</h4>
+        {best !== 0 && (<h4>Best: {best}</h4>)}
+        </div>
     </main>
   )
 }

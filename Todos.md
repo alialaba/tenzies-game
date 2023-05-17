@@ -9,6 +9,8 @@
 9. end game 2 (check if All dice are held and all dice have the same value) [every method]
 10. end game 3 (If tenzies is true, Change the button text to "New Game") and If tenzies is true, use the "react-confetti" package  render the  component 
 11. new game (Allow the user to play a new game when the button is clicked and they've already won)
+12. track rolls : set localstorage when the roll < best | best = 0  {Note create a useState(0 and get loalstorage)}
+
 
 EXTRA CREDITS
 1. CSS: put real dots on the dices
