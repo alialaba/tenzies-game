@@ -189,3 +189,9 @@ transform: translateX(22px);
   align-items: center;
   gap: 2em;
 }
+
+
+.die__timer{color:#000}
+.die__best-time, .die__best-name{
+  color: #f5f5f5;
+}

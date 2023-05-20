@@ -10,6 +10,7 @@
 10. end game 3 (If tenzies is true, Change the button text to "New Game") and If tenzies is true, use the "react-confetti" package  render the  component 
 11. new game (Allow the user to play a new game when the button is clicked and they've already won)
 12. track rolls : set localstorage when the roll < best | best = 0  {Note create a useState(0 and get loalstorage)}
+13. create handlestart and handlestop(if sec < bestTime | 0 setItem)
 
 
 EXTRA CREDITS

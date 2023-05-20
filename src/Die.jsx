@@ -43,7 +43,7 @@ export default function({dieValue, isHeld, onHold}){
   ];
 
   const dots = dotConfigurations[dieValue] || [];
-  console.log(dots);
+  // console.log(dots);
     return(
        <>
        <div className="die__face"  style={bgColor} onClick={onHold}>
