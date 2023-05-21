@@ -111,10 +111,10 @@ function rollDice(){
   return (
     
     <main className='die__disc'>
-      <div className="die__timer">{seconds.toFixed(2)}s</div>
+      <div className="die__count-timer">{seconds.toFixed(2)}s</div>
       {tenzies &&  <Confetti/>}
       {bestTime !== 0 && (
-          <div className="bestTime">
+          <div className="die__besttime">
             <span className="die__best-name">Best Time:</span>
             <span className="die__best-time">{bestTime}s</span>
           </div>
