@@ -9,6 +9,7 @@ function App() {
 const [dice, setDice] = useState(allNewDice());
 const [tenzies, setTenzies] = useState(false);
 const [roll, setRoll] = useState(0);
+const [startGame, setStartGame] = useState(false);
 
  //lazy state initialization 
 const [best, setBest] = useState(()=> JSON.parse(localStorage.getItem("best")) || 0); //(retrieve less best number of roll)
@@ -88,22 +89,31 @@ function allNewDice(){
 //Roll dice
 function rollDice(){
   //if tenzies is false (roll dice, increment roll by 1 and start timer)
-  if(!tenzies){
-    setDice((oldDice)=> oldDice.map((die)=>( die.isHeld ? die : generateNewDice())))
-    setRoll(roll + 1);
-    handleStart();
+  if(startGame){
+    if(!tenzies){
+      setDice((oldDice)=> oldDice.map((die)=>( die.isHeld ? die : generateNewDice())))
+      setRoll(roll + 1);
+      
+    }else{
+      setTenzies(false);
+      setDice(allNewDice());
+      setRoll(0);
+      handleStart();
+    
+    }
+
   }else{
-    setTenzies(false);
-    setDice(allNewDice());
+    setStartGame(true);
+    handleStart();
     setRoll(0);
-  
   }
- 
 }
 
   // Hold dice
   function holdDice(id){
-   setDice((prevDice)=> prevDice.map((die)=>(die.id === id ? {...die, isHeld:!die.isHeld} : die)))
+   if(startGame){
+    setDice((prevDice)=> prevDice.map((die)=>(die.id === id ? {...die, isHeld:!die.isHeld} : die)))
+   }
   }
 
   const diceElements = dice.map((die)=> (<Die key={die.id}   dieValue={die.value} isHeld={die.isHeld} onHold={()=> holdDice(die.id)} />))
@@ -125,7 +135,7 @@ function rollDice(){
       <div className='die__container'>
         {diceElements}
         </div>
-        <button className='die__btn' onClick={rollDice}>{tenzies ? "New Game" : "Roll"}</button>
+        <button className='die__btn' onClick={rollDice}>{!startGame ? "Start Game" : tenzies ? "New Game" : "Roll"}</button>
         
         <div className="die__board">
         <h4>Rolls: {roll}</h4>
